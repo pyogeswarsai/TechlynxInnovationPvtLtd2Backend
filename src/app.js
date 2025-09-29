@@ -20,7 +20,15 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://techlynxcoachingwebsite.netlify.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use("/uploads", express.static(process.env.UPLOAD_DIR || "uploads"));
 
